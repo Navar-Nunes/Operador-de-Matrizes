@@ -1,0 +1,563 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Código de Matrizes para TEMC</title>
+        <style id="compiled-css" type="text/css">
+            * { box-sizing: border-box; margin: 0; padding: 0; }
+      .math
+      {
+         font-size: 1.2em; font-family: serif; font-style: italic;
+         color: #333; vertical-align: middle; margin: 16px;
+      }
+      .math div, .math span { display: inline-block; vertical-align: middle; }
+      .math table {
+         display: inline-table; vertical-align: middle;
+         border-collapse: collapse;
+         border-left: 1px solid #999; border-right: 1px solid #999;
+         font-family: monospace; font-style: normal; margin-right: 16px;
+      }
+      .math table td { text-align: right; padding: 4px 8px; }
+      .math table tr:first-child td:first-child,
+      .math table tr:first-child td:last-child
+      { border-top: 1px solid #999; }
+      .math table tr:last-child td:first-child,
+      .math table tr:last-child td:last-child
+      { border-bottom: 1px solid #999; }
+      
+          
+        </style>
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+<body>
+    <div class="container">
+        <div class="elemento1">
+            Operaçõs com Matrizes
+        </div>
+    </div>
+    <div class="container2">
+        <div class="navigation">
+            <ul>
+                <li class#"list">
+                    <a href#"#">
+                        <span class#"icon">
+                            <ion-icon name="play-outline"></ion-icon>
+                        </span>
+                        <span class#"text">Formar A</span>
+                    </a>
+                </li>
+                <li class#"list">
+                    <a href#"#">
+                        <span class#"icon"></span>
+                        <span class#"text">Formar B</span>
+                    </a>
+                </li>
+                <li class#"list">
+                    <a href#"#">
+                        <span class#"icon"></span>
+                        <span class#"text">Ordem</span>
+                    </a>
+                </li>
+                <li class#"list">
+                    <a href#"#">
+                        <span class#"icon"></span>
+                        <span class#"text">Multiplicar</span>
+                    </a>
+                </li>
+                <li class#"list">
+                    <a href#"#">
+                        <span class#"icon"></span>
+                        <span class#"text">Tipo</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container3">
+        <div class="elemento4">
+        Matrizes Guardadas
+        </div>
+            <div class="elemento5">
+                <div class="math">
+                    <span>A = </span>
+                    <div id="matrix-01"></div>
+                    <span>B = </span>
+                    <div id="matrix-02"></div>
+                </div>
+            </div>
+            <div class="elemento6">
+                <div class="math">
+                    <span>AB = </span>
+                    <div id="matrix-03"></div>
+                </div>
+            </div>
+    </div>
+</body>
+</html>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script type='text/javascript'>
+    var min = 1, max = 10;
+    var sizeRow = 5, sizeLine = 5, diagonal = 3;
+
+    var matrix1 = generate('matrix-01', sizeRow, sizeLine);
+    
+    var matrix2 = generate('matrix-02', sizeRow, sizeLine);
+
+    //MatrixAdd('matrix-03', sizeRow, sizeLine, matrix1, matrix2);
+    //MatrixMultiply('matrix-03', sizeRow, sizeLine, matrix1, matrix2);
+    MakeBand('matrix-03', 3, diagonal, sizeLine, matrix1);
+    
+    function generate(elem, rows, cols)
+    {
+
+        //1 = Diagonal única
+        //2 = Diagonal selecionada pelo 4° valor, com valores iguais a 1
+        //3 = Diagonal selecionada pelo 4° valor, com valores aleatórios
+
+        var matrix = getMatrix(rows, cols, 3, diagonal),
+        //var matrix = getMatrixRand(rows, cols),
+        elem = document.getElementById(elem),
+        table;
+        table = document.createElement('table');
+
+        for (i=0; i < rows; i++)
+        {
+            var row = document.createElement('tr');
+            for (j=-1; j <= cols; j++)
+            {
+                var col = document.createElement('td');
+                col.textContent = matrix[i][j];
+                row.appendChild(col);
+            }
+        table.appendChild(row);
+        }
+        
+        elem.appendChild(table);
+
+        return matrix;
+   }
+    
+   function getMatrix(lines, coluns, typeMatrix, diagonal)
+    {
+       var matrix = new Array();
+       var typeM = typeMatrix;
+       var counter = 0;
+       var diag = diagonal;
+       var diagCount = (diagonal - 1)/2;
+
+       switch (typeM)
+       {
+            case 0:
+                break;
+
+            case 1:
+
+                for (i=0; i < lines; i++)
+                {
+                    matrix[i] = new Array();
+
+                    for (j=0; j < coluns; j++)
+                    {
+                        if((counter == i)&&(counter == j))
+                        {
+                            matrix[i][j] = 1;
+                            counter++;
+                        }
+                        else
+                        {
+                            matrix[i][j] = 0;
+                        }
+                    }
+                }
+
+                break;
+
+            case 2:
+
+                for (i=0; i < lines; i++)
+                    {
+                        matrix[i] = new Array();
+
+                        for (j=0; j < coluns; j++)
+                        {
+                            if((j == counter)||(j == counter)||((j >= (counter - diagCount))&&(j <= (counter + diagCount))))
+                            {
+                                matrix[i][j] = 1;
+                            }
+                            else
+                            {
+                                matrix[i][j] = 0;
+                            }
+                        }
+
+                        counter++;
+                    }
+
+                break;
+
+            case 3:
+
+                for (i=0; i < lines; i++)
+                    {
+                        matrix[i] = new Array();
+
+                        for (j=0; j < coluns; j++)
+                        {
+                            if((j == counter)||(j == counter)||((j >= (counter - diagCount))&&(j <= (counter + diagCount))))
+                            {
+                                matrix[i][j] = getRandom();;
+                            }
+                            else
+                            {
+                                matrix[i][j] = 0;
+                            }
+                        }
+
+                        counter++;
+                    }
+
+                break;
+
+            
+
+            default:
+                break;
+       }
+
+       return matrix;
+    }
+
+    function getMatrixRand(size)
+    {
+       var matrix = new Array(size),
+          idx = size,
+          args;
+
+       for (i=0; i < size; i++)
+       {
+        matrix[i] = getRandom();
+       }
+
+       if (arguments.length > 1)
+       {
+          args = Array.prototype.slice.call(arguments, 1);
+
+          while(idx--)
+          {
+            matrix[size-1 - idx] = getMatrixRand(args);
+          }
+       }
+       return matrix;
+    }
+
+    function MatrixAdd(elem, rows, cols, matr1, matr2)
+    {
+       var matrix = new Array(),
+       elem = document.getElementById(elem),
+       table;
+       var mat1 = matr1;
+       var mat2 = matr2;
+       var counter = 0;
+
+       for (i1=0; i1 < rows; i1++)
+        {
+            matrix[i1] = new Array();
+
+            for (j1=0; j1 < cols; j1++)
+            {
+                matrix[i1][j1] = mat1[i1][j1] + mat2[i1][j1];
+            }
+        }
+       
+        table = document.createElement('table');
+
+        for (i=0; i < rows; i++)
+        {
+            var row = document.createElement('tr');
+            for (j=-1; j <= cols; j++)
+            {
+                var col = document.createElement('td');
+                col.textContent = matrix[i][j];
+                row.appendChild(col);
+            }
+        table.appendChild(row);
+        }
+        
+        elem.appendChild(table);
+    }
+
+    function MatrixMultiply(elem, rows, cols, matr1, matr2)
+    {
+       var matrix = new Array(),
+       elem = document.getElementById(elem),
+       table;
+       var mat1 = matr1;
+       var mat2 = matr2;
+       var counter = 0;
+       var sizeRow = row - 1;
+       var sizeCol = cols - 1;
+
+       
+       for (i1=0; i1 < rows; i1++)
+        {
+            matrix[i1] = new Array();
+
+            for (j1=0; j1 < cols; j1++)
+            {
+                matrix[i1][j1] = 0;
+            }
+        }
+
+       for (i2=0; i2 < rows; i2++)
+        {
+            for (j2=0; j2 < cols; j2++)
+            {
+                for (k=0; k < rows; k++)
+                {
+                    matrix[i2][j2] = matrix[i2][j2]+((mat1[i2][k])*(mat2[k][j2]));
+                }
+            }
+        }
+       
+        table = document.createElement('table');
+
+        for (i=0; i < rows; i++)
+        {
+            var row = document.createElement('tr');
+            for (j=-1; j <= cols; j++)
+            {
+                var col = document.createElement('td');
+                col.textContent = matrix[i][j];
+                row.appendChild(col);
+            }
+        table.appendChild(row);
+        }
+        
+        elem.appendChild(table);
+    }
+
+    function MakeBand(elem, diagonal, lines, matr1)
+    {
+       var matrix = new Array(),
+       elem = document.getElementById(elem),
+       table;
+       var mat1 = matr1;
+       var skip = -1;
+       var diag = diagonal-1;
+
+       if(diag > 2)
+       {
+            skip = (diag-1)/2;
+       }
+
+       for (var i1=0; i1 < lines; i1++)
+        {
+            matrix[i1] = new Array();
+
+            if(skip>0)
+            {
+                for (var j1=0; j1 < diag; j1++)
+                {
+                    if((j1+skip)>(diag))
+                    {
+                        j1 = diag;
+                    }
+                    else
+                    {
+                        matrix[i1][j1] = mat1[i1][j1+skip];
+                    }
+                }
+
+                skip++;
+            }
+            else
+            {
+                for (j1=0; j1 < diag; j1++)
+                {
+                    if(j1>(diag+skip))
+                    {
+                        matrix[i1][j1] = null;
+                    }
+                    else
+                    {
+                        matrix[i1][j1] = mat1[i1][j1];
+                    }
+                }
+
+                skip++;
+            }
+        }
+       
+        table = document.createElement('table');
+
+        for (i=0; i < lines; i++)
+        {
+            var row = document.createElement('tr');
+            for (j=-1; j <= diag; j++)
+            {
+                var col = document.createElement('td');
+                col.textContent = matrix[i][j];
+                row.appendChild(col);
+            }
+        table.appendChild(row);
+        }
+        
+        elem.appendChild(table);
+    }
+    
+    function getRandom()
+    {
+       return Math.floor((Math.random() * max) + min);
+    }
+</script>
+
+<style>
+.title
+{
+    position: relative;
+    width: 42rem;
+    height: 4.125rem;
+    left: 40.8125rem;
+    top: 1.75rem;
+    text-align: center;
+    text-justify: c;
+    background: #FFF7F7;
+    box-shadow: 8px 7px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.container
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 672px;
+    height: 66px;
+    left: 653px;
+    top: 40px;
+
+    background: #FFF7F7;
+    box-shadow: 8px 7px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+    
+}
+.container2
+{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    transform: translate(-0%, -0%);
+    width: 1151px;
+    height: 190px;
+    left: 63px;
+    top: 120px;
+
+    background: #AD784B;
+    box-shadow: 13px 20px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.container3{
+    position: absolute;
+    width: 1151px;
+    height: 500px;
+    left: 70px;
+    top: 400px;
+    background: #AD784B;
+    box-shadow: 13px 20px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.elemento1
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Verdana';
+    font-style: normal;
+    font-size: 25px;
+    color: #000000;
+
+}
+.elemento2
+{
+    position: relative;
+    top: 5%;
+    left: 5%;
+    transform: translate(-5%, -5%);
+    width: 0px;
+    height: 0px;
+    left: 540px;
+    top: 30px;
+
+    background: #FFF7F7;
+    box-shadow: 8px 7px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.elemento3
+{
+    position: relative;
+    top: 5%;
+    left: 5%;
+    transform: translate(-5%, -5%);
+    width: 0px;
+    height: 0px;
+    left: 660px;
+    top: 30px;
+
+    background: #FFF7F7;
+    box-shadow: 8px 7px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.elemento4
+{
+    position: absolute;
+    width: 300px;
+    height: 32px;
+    left: 440px;
+    top: 15px;
+    text-align: center;
+    font-family: 'Verdana';
+    font-style: normal;
+    font-size: 25px;
+    color: #000000;
+    background: #FFF7F7;
+    box-shadow: 8px 7px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.elemento5
+{
+    position: absolute;
+    width: 1000px;
+    height: 32px;
+    left: 95px;
+    top: 65px;
+    text-align: center;
+    font-family: 'Song Myung';
+    font-style: normal;
+    font-size: 32px;
+    color: #FFFFFF;
+}
+.elemento6
+{
+    position: absolute;
+    width: 1000px;
+    height: 32px;
+    left: 95px;
+    top: 305px;
+    text-align: center;
+    font-family: 'Song Myung';
+    font-style: normal;
+    font-size: 32px;
+    color: #FFFFFF;
+}
+
+body
+{
+    height: 1200px;
+    background-color: #4B9CAD;
+}
+</style>
