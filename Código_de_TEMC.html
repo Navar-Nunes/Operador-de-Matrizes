@@ -4,27 +4,30 @@
         <title>Código de Matrizes para TEMC</title>
         <style id="compiled-css" type="text/css">
             * { box-sizing: border-box; margin: 0; padding: 0; }
-      .math
-      {
-         font-size: 1.2em; font-family: serif; font-style: italic;
-         color: #333; vertical-align: middle; margin: 16px;
-      }
-      .math div, .math span { display: inline-block; vertical-align: middle; }
-      .math table {
-         display: inline-table; vertical-align: middle;
-         border-collapse: collapse;
-         border-left: 1px solid #999; border-right: 1px solid #999;
-         font-family: monospace; font-style: normal; margin-right: 16px;
-      }
-      .math table td { text-align: right; padding: 4px 8px; }
-      .math table tr:first-child td:first-child,
-      .math table tr:first-child td:last-child
-      { border-top: 1px solid #999; }
-      .math table tr:last-child td:first-child,
-      .math table tr:last-child td:last-child
-      { border-bottom: 1px solid #999; }
-      
-          
+        .math
+        {
+            font-size: 1.2em; font-family: serif; font-style: italic;
+            color: #333; vertical-align: middle; margin: 16px;
+        }
+        .math div, .math span { display: inline-block; vertical-align: middle; }
+        .math table
+        {
+            display: inline-table; vertical-align: middle;
+            border-collapse: collapse;
+            border-left: 1px solid #999; border-right: 1px solid #999;
+            font-family: monospace; font-style: normal; margin-right: 16px;
+        }
+        .math table td { text-align: right; padding: 4px 8px; }
+        .math table tr:first-child td:first-child,
+        .math table tr:first-child td:last-child
+        {
+            border-top: 1px solid #999;
+        }
+        .math table tr:last-child td:first-child,
+        .math table tr:last-child td:last-child
+        {
+            border-bottom: 1px solid #999;
+        }
         </style>
 
         <link rel="stylesheet" type="text/css" href="style.css">
@@ -33,45 +36,209 @@
 <body>
     <div class="container">
         <div class="elemento1">
-            Operaçõs com Matrizes
+            Operações com Matrizes
         </div>
     </div>
+
+    <div class="navigation">
+        <ul>
+            <li class="list active">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="apps-sharp"></ion-icon>
+                    </span>
+                    <span class="text">Criar Matrizes</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="apps-outline"></ion-icon>
+                    </span>
+                    <span class="text">Editar Matrizes</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="add-outline"></ion-icon>
+                    </span>
+                    <span class="text">Operações Simples</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="grid"></ion-icon>
+                    </span>
+                    <span class="text">Obter Matriz Cheia</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="build-outline"></ion-icon>
+                    </span>
+                    <span class="text">Configurar</span>
+                </a>
+            </li>
+            <div class="indicator"></div>
+        </ul>
+    </div>
+
     <div class="container2">
-        <div class="navigation">
-            <ul>
-                <li class#"list">
-                    <a href#"#">
-                        <span class#"icon">
-                            <ion-icon name="play-outline"></ion-icon>
-                        </span>
-                        <span class#"text">Formar A</span>
-                    </a>
-                </li>
-                <li class#"list">
-                    <a href#"#">
-                        <span class#"icon"></span>
-                        <span class#"text">Formar B</span>
-                    </a>
-                </li>
-                <li class#"list">
-                    <a href#"#">
-                        <span class#"icon"></span>
-                        <span class#"text">Ordem</span>
-                    </a>
-                </li>
-                <li class#"list">
-                    <a href#"#">
-                        <span class#"icon"></span>
-                        <span class#"text">Multiplicar</span>
-                    </a>
-                </li>
-                <li class#"list">
-                    <a href#"#">
-                        <span class#"icon"></span>
-                        <span class#"text">Tipo</span>
-                    </a>
-                </li>
-            </ul>
+        <div class="creatorElem" id="creatorElement">
+            <b>Nome da Matriz:</b>
+            <select name="QualMatriz" id="matrixSelect1" class="selector">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+            &nbsp;
+            &nbsp;
+            <b>Tipo da Matriz:</b>
+            <select name="QualMatriz" id="tipoSelect1" class="selector2">
+                <option value="Diagonal">Diagonal</option>
+                <option value="Cheia">Cheia</option>
+                <option value="Elementar">Elementar</option>
+            </select>
+            &nbsp;
+            &nbsp;
+            <b>Tipo de Valores: </b>
+            <select name="QualMatriz" id="tipoValores1" class="selector2">
+                <option value="1e0">Matriz de 1's e zeros</option>
+                <option value="ValoresAleat">Valores aleatórios</option>
+            </select>
+            <br>
+            <br>
+            <b>Diagonais:</b>
+            <input type="text" id="sizeDiag" name="valorColuna" value="1"
+                    onkeypress="return NumberKey(event)"
+                    maxlength="8"
+                    size="1%" />
+
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <b>Min:</b>
+            <input type="text" id="minimo" name="valorColuna" value="1"
+                    maxlength="8"
+                    size="1%" />
+
+            &nbsp;
+
+            <b>Máx:</b>
+            <input type="text" id="maximo" name="valorColuna" value="10"
+                    maxlength="8"
+                    size="1%" />
+            <br>
+            <br>
+            <form name="inputnumber" 
+              autocomplete="off">
+            <b>Linhas:</b>
+            <input type="text" id="sizeI" name="valorLinha" value="5"
+                   onkeypress="return NumberKey(event)"
+                   maxlength="8"
+                   size="1%" />
+
+            <br>
+            <b>Colunas:</b>
+            <input type="text" id="sizeJ" name="valorColuna" value="5"
+                    onkeypress="return NumberKey(event)"
+                    maxlength="8"
+                    size="1%" />
+            <br>
+            <br>
+            <button type="creatorBTN" class="buttonos" id="creator" value="Criar">Criar</button>
+        </div>
+        <div class="inputElem" id="editElement">
+            <b>Qual Matriz:</b>
+            <select name="QualMatriz2" id="matrixSelect2" class="selector">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+            <br>
+            <br>
+            <form name="inputnumber" 
+              autocomplete="off">
+            <b>i:</b>
+            <input type="text" id="sizeI" name="valorLinha" value="1"
+                   onkeypress="return NumberKey(event)"
+                   maxlength="8"
+                   size="1%" />
+
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <b>j:</b>
+            <input type="text" id="sizeI" name="valorLinha" value="1"
+                   onkeypress="return NumberKey(event)"
+                   maxlength="8"
+                   size="1%" />
+            <br>
+            <br>
+
+            <form name="inputnumber" 
+              autocomplete="off">
+            Valor:
+            <input type="text" id="sizeI" name="valorLinha" value="5"
+                   onkeypress="return NumberKey(event)"
+                   maxlength="8"
+                   size="6%" />
+            <br>
+            <br>
+
+            <button type="creatorBTN" class="buttonos" id="alterator" value="Criar">Alterar</button>
+        </div>
+        <div class="operaElement" id="operaElem">
+            <b>Matriz 1:</b>
+            <select name="QualMatrizO1" id="matrixSelectO1" class="selector">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+            &nbsp;
+            &nbsp;
+            <b>Matriz 2:</b>
+            <select name="QualMatrizO2" id="matrixSelectO2" class="selector">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+            <br>
+            <br>
+            <b>Tipo de operação: </b>
+            <select name="QualOpr" id="tipoSelect1" class="selector2">
+                <option value="somar">Soma</option>
+                <option value="multiplicar">Multiplicação</option>
+            </select>
+            <br>
+            <br>
+            <form name="inputnumber" 
+              autocomplete="off">
+            <b>N° de Somas: </b>
+            <input type="text" id="somaNumb" name="valorLinha" value="0"
+                   onkeypress="return NumberKey(event)"
+                   maxlength="8"
+                   size="1%" />
+
+            &nbsp;
+            &nbsp;
+            <b>N° de Multiplicações: </b>
+            <input type="text" id="multNumb" name="valorLinha" value="0"
+                    onkeypress="return NumberKey(event)"
+                    maxlength="8"
+                    size="1%" />
+
+            <br>
+            <br>
+            <button type="creatorBTN" class="buttonos" id="opperator" value="Criar">Acionar</button>
         </div>
     </div>
     <div class="container3">
@@ -80,36 +247,390 @@
         </div>
             <div class="elemento5">
                 <div class="math">
-                    <span>A = </span>
-                    <div id="matrix-01"></div>
-                    <span>B = </span>
-                    <div id="matrix-02"></div>
+                    <div id="show_mat_a">
+                        <span>A = </span>
+                        <div id="matrix-01"></div>
+                    </div>
+                    <div id="show_mat_b">
+                        <span>B = </span>
+                        <div id="matrix-02"></div>
+                    </div>
+                    <div id="show_mat_c">
+                        <span>C = </span>
+                        <div id="matrix-03"></div>
+                    </div>
+                    <div id="show_mat_d">
+                        <span>D = </span>
+                        <div id="matrix-04"></div>
+                    </div>
                 </div>
             </div>
             <div class="elemento6">
                 <div class="math">
-                    <span>AB = </span>
-                    <div id="matrix-03"></div>
+                    <div id="show_res_a">
+                        <span>Res = </span>
+                        <div id="matrix-05"></div>
+                    </div>
+                    <div id="show_res_b">
+                        <span>B = </span>
+                        <div id="matrix-06"></div>
+                    </div>
+                    <div id="show_res_c">
+                        <span>C = </span>
+                        <div id="matrix-07"></div>
+                    </div>
+                    <div id="show_res_d">
+                        <span>D = </span>
+                        <div id="matrix-08"></div>
+                    </div>
                 </div>
             </div>
     </div>
+
+    <script>
+        const list = document.querySelectorAll('.list');
+
+        function activeLink()
+        {
+            list.forEach((item) =>
+            item.classList.remove('active'));
+            this.classList.add('active');
+
+            if(list.item(0).classList.contains('active'))
+            {
+                document.getElementById("creatorElement").style.display="block";
+                document.getElementById("editElement").style.display="none";
+                document.getElementById("operaElem").style.display="none";
+            }
+            else if(list.item(1).classList.contains('active'))
+            {
+                document.getElementById("creatorElement").style.display="none";
+                document.getElementById("editElement").style.display="block";
+                document.getElementById("operaElem").style.display="none";
+            }
+            else if(list.item(2).classList.contains('active'))
+            {
+                document.getElementById("creatorElement").style.display="none";
+                document.getElementById("editElement").style.display="none";
+                document.getElementById("operaElem").style.display="block";
+            }
+            else if(list.item(3).classList.contains('active'))
+            {
+                document.getElementById("creatorElement").style.display="none";
+                document.getElementById("editElement").style.display="none";
+                document.getElementById("operaElem").style.display="none";
+            }
+            else if(list.item(4).classList.contains('active'))
+            {
+                document.getElementById("creatorElement").style.display="none";
+                document.getElementById("editElement").style.display="none";
+                document.getElementById("operaElem").style.display="none";
+            }
+            else if(list.item(5).classList.contains('active'))
+            {
+                document.getElementById("creatorElement").style.display="none";
+                document.getElementById("editElement").style.display="none";
+                document.getElementById("operaElem").style.display="none";
+            }
+        }
+
+        list.forEach((item) =>
+        item.addEventListener('click', activeLink));
+    </script>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
+
+<script>
+    function NumberKey(evt)
+    {
+          
+        // Only ASCII character in that range allowed
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        return true;
+    }
+</script>
+
 </html>
 
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
 <script type='text/javascript'>
-    var min = 1, max = 10;
-    var sizeRow = 5, sizeLine = 5, diagonal = 3;
+    const btn1 = document.querySelector('#creator');
+    const btn2 = document.querySelector('#alterator');
+    const btn3 = document.querySelector('#opperator');
 
-    var matrix1 = generate('matrix-01', sizeRow, sizeLine);
-    
-    var matrix2 = generate('matrix-02', sizeRow, sizeLine);
+    var min = 1, max = 10, somas = 0, multis = 0;
+    var sizeRow = 5, sizeLine = 5, tipoMatr = 0, tipoGeral = 0, diagonal = 3, diagonal2 = 1;
+    var guarda1, guarda2;
+    //var txt = "";
+    /* Para essa variável de teste, usava-se o seguinte código:
+    <div id="output">
+        teste
+    </div>
+    testudão*/
+
+    document.getElementById("editElement").style.display="none";
+    document.getElementById("operaElem").style.display="none";
+
+    document.getElementById("show_mat_a").style.display="none";
+    document.getElementById("show_mat_b").style.display="none";
+    document.getElementById("show_mat_c").style.display="none";
+    document.getElementById("show_mat_d").style.display="none";
+
+    document.getElementById("show_res_a").style.display="none";
+    document.getElementById("show_res_b").style.display="none";
+    document.getElementById("show_res_c").style.display="none";
+    document.getElementById("show_res_d").style.display="none";
+
+    btn1.addEventListener("click", (e) =>{
+        e.preventDefault();
+
+        sizeLine = document.getElementById("sizeI").value;
+        sizeRow = document.getElementById("sizeJ").value;
+        min = document.getElementById("minimo").value;
+        max = document.getElementById("maximo").value;
+
+        //Esse botão cria as matrizes
+
+        switch (document.getElementById("tipoValores1").value)
+        {
+            //devido ao estilo no qual as funções foram testadas antes, fui obrigado a criar
+            //essas variáveis "tipoGeral" e "tipoMatr", para definir o tipo de variável.
+            //Pretendo otimizar isso no futuro
+
+            case "0e1":
+
+                tipoGeral = 0;
+
+                if (document.getElementById("sizeDiag").value < 2)
+                {
+                    tipoMatr = 1;
+                    diagonal = document.getElementById("sizeDiag").value;
+                }
+                else
+                {
+                    tipoMatr = 2;
+                    diagonal = document.getElementById("sizeDiag").value;
+                }
+                break;
+
+            case "ValoresAleat":
+                tipoMatr = 3;
+                tipoGeral = 1;
+                diagonal = document.getElementById("sizeDiag").value;
+                break;
+        }
+
+        switch (document.getElementById("tipoSelect1").value)
+        {
+            case "Diagonal":
+                if (tipoGeral == 0)
+                {
+                    if (document.getElementById("sizeDiag").value < 2)
+                    {
+                        tipoMatr = 1;
+                        diagonal = document.getElementById("sizeDiag").value;
+                    }
+                    else
+                    {
+                        tipoMatr = 2;
+                        diagonal = document.getElementById("sizeDiag").value;
+                    }
+                }
+                break;
+
+            case "Cheia":
+                tipoGeral = 3;
+                break; 
+
+            case "Elementar":
+                matrix1 = generate('matrix-03', sizeLine, sizeRow);
+                break;
+        }
+
+        switch (document.getElementById("matrixSelect1").value)
+        {
+            case "A":
+                document.getElementById("show_mat_a").style.display="block";
+                document.getElementById("matrix-01").innerHTML='';
+
+                if(tipoGeral == 3)
+                {
+                    var matrix1 = generateRandomica('matrix-01', sizeLine, sizeRow);
+                }
+                else
+                {
+                    var matrix1 = generate('matrix-01', sizeLine, sizeRow);
+                }
+                break;
+
+            case "B":
+                document.getElementById("show_mat_b").style.display="block";
+                document.getElementById("matrix-02").innerHTML='';
+                
+                if(tipoGeral == 3)
+                {
+                    var matrix1 = generateRandomica('matrix-02', sizeLine, sizeRow);
+                }
+                else
+                {
+                    var matrix1 = generate('matrix-02', sizeLine, sizeRow);
+                }
+                break; 
+
+            case "C":
+                document.getElementById("show_mat_c").style.display="block";
+                document.getElementById("matrix-03").innerHTML='';
+                
+                if(tipoGeral == 3)
+                {
+                    var matrix1 = generateRandomica('matrix-03', sizeLine, sizeRow);
+                }
+                else
+                {
+                    var matrix1 = generate('matrix-03', sizeLine, sizeRow);
+                }
+                break;
+
+            case "D":
+                document.getElementById("show_mat_d").style.display="block";
+                document.getElementById("matrix-04").innerHTML='';
+                
+                if(tipoGeral == 3)
+                {
+                    var matrix1 = generateRandomica('matrix-04', sizeLine, sizeRow);
+                }
+                else
+                {
+                    var matrix1 = generate('matrix-04', sizeLine, sizeRow);
+                }
+                break;
+
+            default:
+                document.getElementById("show_mat_a").style.display="block";
+                var matrix1 = generate('matrix-01', sizeLine, sizeRow);
+                break;
+        }
+
+        tipoMatr = 0;
+        tipoGeral = 0;
+
+        guarda1 = matrix1;
+        guarda2 = matrix2;
+    });
+
+    btn3.addEventListener("click", (e) =>{
+        e.preventDefault();
+
+        switch (document.getElementById("matrixSelectO1").value)
+        {
+            case "A":
+                document.getElementById("show_res_a").style.display="block";
+                document.getElementById("matrix-05").innerHTML='';
+
+                switch (document.getElementById("matrixSelectO2").value)
+                {
+                    case "A":
+                        MatrixAdd('matrix-05', sizeRow, sizeLine, guarda1, guarda1);
+                        break;
+                    
+                    case "B":
+                        MatrixAdd('matrix-05', sizeRow, sizeLine, matrix1, matrix2);
+                        break;
+
+                    case "C":
+                        MatrixAdd('matrix-05', sizeRow, sizeLine, matrix1, matrix3);
+                        break;
+
+                    case "D":
+                        MatrixAdd('matrix-05', sizeRow, sizeLine, matrix1, matrix4);
+                        break;
+                }
+                break;
+
+                case "B":
+                document.getElementById("show_res_a").style.display="block";
+                document.getElementById("matrix-05").innerHTML='';
+
+                switch (document.getElementById("matrixSelectO2").value)
+                {
+                    case "A":
+                        MatrixAdd('matrix-05', sizeRow, sizeLine, matrix2, matrix1);
+                        break;
+                    
+                    case "B":
+                        MatrixAdd('matrix-05', sizeRow, sizeLine, matrix2, matrix2);
+                        break;
+
+                    case "C":
+                        MatrixAdd('matrix-05', sizeRow, sizeLine, matrix2, matrix3);
+                        break;
+
+                    case "D":
+                        MatrixAdd('matrix-05', sizeRow, sizeLine, matrix2, matrix4);
+                        break;
+                }
+                break;
+
+                case "C":
+                document.getElementById("show_res_a").style.display="block";
+                document.getElementById("matrix-05").innerHTML='';
+
+                switch (document.getElementById("matrixSelectO2").value)
+                {
+                    case "A":
+                        MatrixAdd('matrix-05', sizeRow, sizeLine, matrix3, matrix1);
+                        break;
+                    
+                    case "B":
+                        MatrixAdd('matrix-05', sizeRow, sizeLine, matrix3, matrix2);
+                        break;
+
+                    case "C":
+                        MatrixAdd('matrix-05', sizeRow, sizeLine, matrix3, matrix3);
+                        break;
+
+                    case "D":
+                        MatrixAdd('matrix-05', sizeRow, sizeLine, matrix3, matrix4);
+                        break;
+                }
+                break;
+
+                case "D":
+                document.getElementById("show_res_a").style.display="block";
+                document.getElementById("matrix-05").innerHTML='';
+
+                switch (document.getElementById("matrixSelectO2").value)
+                {
+                    case "A":
+                        MatrixAdd('matrix-05', sizeRow, sizeLine, matrix4, matrix1);
+                        break;
+                    
+                    case "B":
+                        MatrixAdd('matrix-05', sizeRow, sizeLine, matrix4, matrix2);
+                        break;
+
+                    case "C":
+                        MatrixAdd('matrix-05', sizeRow, sizeLine, matrix4, matrix3);
+                        break;
+
+                    case "D":
+                        MatrixAdd('matrix-05', sizeRow, sizeLine, matrix4, matrix4);
+                        break;
+                }
+                break;
+        }
+
+        document.getElementById("somaNumb").value = somas;
+        document.getElementById("multNumb").value = multis;
+    });
 
     //MatrixAdd('matrix-03', sizeRow, sizeLine, matrix1, matrix2);
     //MatrixMultiply('matrix-03', sizeRow, sizeLine, matrix1, matrix2);
-    MakeBand('matrix-03', 3, diagonal, sizeLine, matrix1);
+    //MakeBand('matrix-03','matrix-04', diagonal, diagonal2, sizeLine, matrix1);
     
     function generate(elem, rows, cols)
     {
@@ -118,28 +639,26 @@
         //2 = Diagonal selecionada pelo 4° valor, com valores iguais a 1
         //3 = Diagonal selecionada pelo 4° valor, com valores aleatórios
 
-        var matrix = getMatrix(rows, cols, 3, diagonal),
-        //var matrix = getMatrixRand(rows, cols),
-        elem = document.getElementById(elem),
-        table;
-        table = document.createElement('table');
+        var matrix = getMatrix(rows, cols, tipoMatr, diagonal);
 
-        for (i=0; i < rows; i++)
-        {
-            var row = document.createElement('tr');
-            for (j=-1; j <= cols; j++)
-            {
-                var col = document.createElement('td');
-                col.textContent = matrix[i][j];
-                row.appendChild(col);
-            }
-        table.appendChild(row);
-        }
-        
-        elem.appendChild(table);
+        showMatrix(elem, matrix, rows, cols);
 
         return matrix;
-   }
+    }
+
+    function generateRandomica(elem, rows, cols)
+    {
+
+        //1 = Diagonal única
+        //2 = Diagonal selecionada pelo 4° valor, com valores iguais a 1
+        //3 = Diagonal selecionada pelo 4° valor, com valores aleatórios
+
+        var matrix = getMatrixRand(rows, cols);
+
+        showMatrix(elem, matrix, rows, cols);
+
+        return matrix;
+    }
     
    function getMatrix(lines, coluns, typeMatrix, diagonal)
     {
@@ -155,6 +674,8 @@
                 break;
 
             case 1:
+
+                //nesse caso, se trata de uma matriz de diagonal única
 
                 for (i=0; i < lines; i++)
                 {
@@ -178,6 +699,8 @@
 
             case 2:
 
+                //matriz de 1 e zeros, tendo uma quantidade de diagonais definidas
+
                 for (i=0; i < lines; i++)
                     {
                         matrix[i] = new Array();
@@ -200,6 +723,8 @@
                 break;
 
             case 3:
+
+                //matriz aleatória com diagonais definidas
 
                 for (i=0; i < lines; i++)
                     {
@@ -273,21 +798,9 @@
             }
         }
        
-        table = document.createElement('table');
+        showMatrix(elem, matrix, rows, cols);
 
-        for (i=0; i < rows; i++)
-        {
-            var row = document.createElement('tr');
-            for (j=-1; j <= cols; j++)
-            {
-                var col = document.createElement('td');
-                col.textContent = matrix[i][j];
-                row.appendChild(col);
-            }
-        table.appendChild(row);
-        }
-        
-        elem.appendChild(table);
+        somas++;
     }
 
     function MatrixMultiply(elem, rows, cols, matr1, matr2)
@@ -338,20 +851,23 @@
         }
         
         elem.appendChild(table);
+
+        multis++;
     }
 
-    function MakeBand(elem, diagonal, lines, matr1)
+    function MakeBand(elem, elem2, diagonal, segundaDiagonal, lines, matr1)
     {
-       var matrix = new Array(),
-       elem = document.getElementById(elem),
-       table;
+        //Fazer a função que obtêm a diagonal da matriz banda, através do uso das colunas da matriz principal.
+
+       var matrix = new Array();
+       var matrix2 = new Array();
        var mat1 = matr1;
        var skip = -1;
        var diag = diagonal-1;
 
-       if(diag > 2)
+       if(diagonal > 2)
        {
-            skip = (diag-1)/2;
+            skip = -((diagonal-1)/2);
        }
 
        for (var i1=0; i1 < lines; i1++)
@@ -360,15 +876,18 @@
 
             if(skip>0)
             {
-                for (var j1=0; j1 < diag; j1++)
+                var newCont2 = skip;
+
+                for (var j1=0; j1 < diagonal; j1++)
                 {
-                    if((j1+skip)>(diag))
+                    if(newCont2 == lines)
                     {
-                        j1 = diag;
+                        matrix[i1][j1] = null;
                     }
                     else
                     {
-                        matrix[i1][j1] = mat1[i1][j1+skip];
+                        matrix[i1][j1] = mat1[i1][newCont2];
+                        newCont2++;
                     }
                 }
 
@@ -376,28 +895,85 @@
             }
             else
             {
-                for (j1=0; j1 < diag; j1++)
+                var newCont = 0;
+
+                for (var j1=skip; j1 < diagonal; j1++)
                 {
-                    if(j1>(diag+skip))
+                    if(j1<0)
                     {
-                        matrix[i1][j1] = null;
+                        //txt += "i1 "+i1+"<br>";
+                        //document.getElementById("output").innerHTML = txt;
+                        matrix[i1][newCont] = null;
+                        newCont++;
                     }
                     else
                     {
-                        matrix[i1][j1] = mat1[i1][j1];
+                        matrix[i1][newCont] = mat1[i1][j1];
+                        newCont++;
                     }
                 }
 
                 skip++;
             }
         }
-       
+
+        if (segundaDiagonal == 1)
+        {
+            var colunaDiag = ((diagonal-1)/2);
+
+            for (var i1=0; i1 < lines; i1++)
+            {
+                matrix2[i1] = new Array();
+
+                matrix2[i1][1] = matrix[i1][colunaDiag];
+            }
+        }
+        else
+        {
+            var colunaDiag = ((diagonal-1)/2);
+            var colunaExt = ((segundaDiagonal-1)/2);
+            var contr = colunaDiag-colunaExt;
+            var limite = colunaDiag+colunaExt+1;
+
+            for (var i1=0; i1 < lines; i1++)
+            {
+                matrix2[i1] = new Array();
+
+                for (var j1=0; j1 < (segundaDiagonal); j1++)
+                {
+                    matrix2[i1][j1] = matrix[i1][contr];
+                    contr++;
+
+                    if (contr > limite)
+                    {
+                        j1 = colunaDiag;
+                    }
+                }
+
+                contr = colunaDiag-colunaExt;
+            }
+        }
+
+        showMatrix(elem, matrix, lines, diag);
+        showMatrix(elem2, matrix2, lines, diag);
+    }
+    
+    function getRandom()
+    {
+       return Math.floor((Math.random() * max) + min);
+    }
+
+    function showMatrix(elem, matriz, rows, cols)
+    {
+        var matrix = matriz,
+        elem = document.getElementById(elem),
+        table;
         table = document.createElement('table');
 
-        for (i=0; i < lines; i++)
+        for (i=0; i < rows; i++)
         {
             var row = document.createElement('tr');
-            for (j=-1; j <= diag; j++)
+            for (j=-1; j <= cols; j++)
             {
                 var col = document.createElement('td');
                 col.textContent = matrix[i][j];
@@ -407,11 +983,6 @@
         }
         
         elem.appendChild(table);
-    }
-    
-    function getRandom()
-    {
-       return Math.floor((Math.random() * max) + min);
     }
 </script>
 
@@ -432,13 +1003,11 @@
 .container
 {
     position: absolute;
-    top: 50%;
+    top: 6%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 672px;
     height: 66px;
-    left: 653px;
-    top: 40px;
 
     background: #FFF7F7;
     box-shadow: 8px 7px 4px rgba(0, 0, 0, 0.25);
@@ -452,9 +1021,9 @@
     left: 0%;
     transform: translate(-0%, -0%);
     width: 1151px;
-    height: 190px;
+    height: 230px;
     left: 63px;
-    top: 120px;
+    top: 220px;
 
     background: #AD784B;
     box-shadow: 13px 20px 4px rgba(0, 0, 0, 0.25);
@@ -465,7 +1034,7 @@
     width: 1151px;
     height: 500px;
     left: 70px;
-    top: 400px;
+    top: 500px;
     background: #AD784B;
     box-shadow: 13px 20px 4px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
@@ -554,10 +1123,54 @@
     font-size: 32px;
     color: #FFFFFF;
 }
-
-body
+.creatorElem
 {
-    height: 1200px;
-    background-color: #4B9CAD;
+    position: relative;
+    text-align: center;
+    font-size: 20px;
+}
+.inputElem
+{
+    position: relative;
+    text-align: center;
+    font-size: 20px;
+    left: 0%;
+}
+.selector
+{
+    position: relative;
+    width: 4%;
+    height: 15%;
+    font-size: 100%;
+    text-align: center;
+}
+.selector2
+{
+    position: relative;
+    width: 20%;
+    height: 15%;
+    font-size: 85%;
+    text-align: center;
+}
+.buttonos
+{
+    position: relative;
+    width: 10%;
+    height: 15%;
+    font-size: 100%;
+    text-align: center;
+}
+.inputElem2
+{
+    position: relative;
+    text-align: center;
+    font-size: 25px;
+    left: 0%;
+}
+.operaElement
+{
+    position: relative;
+    text-align: center;
+    font-size: 20px;
 }
 </style>
