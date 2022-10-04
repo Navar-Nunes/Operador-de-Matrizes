@@ -1,0 +1,1970 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Código de Matrizes para TEMC</title>
+        <style id="compiled-css" type="text/css">
+            * { box-sizing: border-box; margin: 0; padding: 0; }
+        .math
+        {
+            font-size: 1.2em; font-family: serif; font-style: italic;
+            color: #333; vertical-align: middle; margin: 16px;
+        }
+        .math div, .math span { display: inline-block; vertical-align: middle; }
+        .math table
+        {
+            display: inline-table; vertical-align: middle;
+            border-collapse: collapse;
+            border-left: 1px solid #999; border-right: 1px solid #999;
+            font-family: monospace; font-style: normal; margin-right: 16px;
+        }
+        .math table td { text-align: right; padding: 4px 8px; }
+        .math table tr:first-child td:first-child,
+        .math table tr:first-child td:last-child
+        {
+            border-top: 1px solid #999;
+        }
+        .math table tr:last-child td:first-child,
+        .math table tr:last-child td:last-child
+        {
+            border-bottom: 1px solid #999;
+        }
+        </style>
+
+        <script>// Aqui tinha uma referência ao script "style.css"</script>
+
+        <link rel="stylesheet" type="text/css">
+    </head>
+
+<body>
+    <div class="container">
+        <div class="elemento1">
+            Operações com Matrizes
+        </div>
+    </div>
+
+    <div class="navigation">
+        <ul>
+            <li class="list active">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="apps-sharp"></ion-icon>
+                    </span>
+                    <span class="text">Criar Matrizes</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="apps-outline"></ion-icon>
+                    </span>
+                    <span class="text">Editar Matrizes</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="add-outline"></ion-icon>
+                    </span>
+                    <span class="text">Operações Simples</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="analytics-sharp"></ion-icon>
+                    </span>
+                    <span class="text">Obter Gráfico</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="grid"></ion-icon>
+                    </span>
+                    <span class="text">Vizualizar Matrizes</span>
+                </a>
+            </li>
+            <div class="indicator"></div>
+        </ul>
+    </div>
+
+    <div class="container2">
+        <div class="creatorElem" id="creatorElement">
+            <b>Nome da Matriz:</b>
+            <select name="NomeMatriz" id="matrixSelect1" class="selector">
+                <option value="A" selected="selected">A</option>
+                <option value="B">B</option>
+            </select>
+            &nbsp;
+            &nbsp;
+            <b>Tipo da Matriz:</b>
+            <select name="TipoMatriz" id="tipoSelect1" class="selector2">
+                <option value="Diagonal">Diagonal</option>
+                <option value="Cheia">Cheia</option>
+            </select>
+            &nbsp;
+            &nbsp;
+            <b>Tipo de Valores: </b>
+            <select name="QualValores" id="tipoValores1" class="selector2">
+                <option value="zeroUm">Matriz de 1's e zeros</option>
+                <option value="ValoresAleat">Valores aleatórios</option>
+                <option value="Sequence">Sequencial</option>
+            </select>
+            <br>
+            <br>
+            <b>Diagonais:</b>
+            <input type="text" id="sizeDiag" name="valorDiags" value="3"
+                    onkeypress="return NumberKey(event)"
+                    maxlength="8"
+                    size="1%" />
+
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <b>Min:</b>
+            <input type="text" id="minimo" name="valorMin" value="0"
+                    maxlength="8"
+                    size="1%" />
+
+            &nbsp;
+
+            <b>Máx:</b>
+            <input type="text" id="maximo" name="valorMax" value="10"
+                    maxlength="8"
+                    size="1%" />
+            <br>
+            <br>
+            <form name="inputnumber" 
+              autocomplete="off">
+            <b>Linhas:</b>
+            <input type="text" id="sizeI" name="valorLinha" value="5"
+                   onkeypress="return NumberKey(event)"
+                   maxlength="8"
+                   size="1%" />
+
+            <br>
+            <b>Colunas:</b>
+            <input type="text" id="sizeJ" name="valorColuna" value="5"
+                    onkeypress="return NumberKey(event)"
+                    maxlength="8"
+                    size="1%" />
+            <br>
+            <br>
+            <button type="creatorBTN" class="buttonos" id="creator" value="Criar">Criar</button>
+        </div>
+        <div class="inputElem" id="editElement">
+            <b>Matriz:</b>
+            <select name="QualMatrizEdit" id="matrixSelect2" class="selector">
+                <option value="A">A</option>
+                <option value="B">B</option>
+            </select>
+            <br>
+            <br>
+            <form name="inputnumber" 
+              autocomplete="off">
+            <b>Linha:</b>
+            <input type="text" id="sizeIedit" name="valorLinhaEdit" value="1"
+                   onkeypress="return NumberKey(event)"
+                   maxlength="8"
+                   size="1%" />
+
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <b>Coluna:</b>
+            <input type="text" id="sizeJedit" name="valorColunaEdit" value="1"
+                   onkeypress="return NumberKey(event)"
+                   maxlength="8"
+                   size="1%" />
+            <br>
+            <br>
+
+            <form name="inputnumber" 
+              autocomplete="off">
+            Valor:
+            <input type="text" id="valueEdit" name="valorParaMudar" value="0"
+                   onkeypress="return NumberKey(event)"
+                   maxlength="8"
+                   size="6%" />
+            <br>
+            <br>
+
+            <button type="alteratorBTN" class="buttonos" id="alterator" value="Criar">Alterar</button>
+        </div>
+        <div class="operaElement" id="operaElem">
+            <b>Matriz 1:</b>
+            <select name="MatrizOPR1" id="operada1" class="selector">
+                <option value="A">A</option>
+                <option value="B">B</option>
+            </select>
+            &nbsp;
+            &nbsp;
+            <b>Matriz 2:</b>
+            <select name="MatrizOPR2" id="operada2" class="selector">
+                <option value="B">B</option>
+                <option value="A">A</option>
+            </select>
+            &nbsp;
+            &nbsp;
+            <b>Atribuição:</b>
+            <select name="MatrizOPR3" id="operada3" class="selector">
+                <option value="def">--</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+            </select>
+            <br>
+            <br>
+            <b>Tipo de operação: </b>
+            <select name="QualOpr" id="tipoDeOperar" class="selector2">
+                <option value="somar">Soma</option>
+                <option value="multiplicar">Multiplicação</option>
+            </select>
+            <br>
+            <br>
+            <form name="inputnumber" 
+              autocomplete="off">
+            <b>N° de Somas: </b>
+            <input type="text" id="somaNumb" name="valorLinha" value="0"
+                   onkeypress="return NumberKey(event)"
+                   maxlength="8"
+                   size="1%" />
+
+            &nbsp;
+            &nbsp;
+            <b>N° de Multiplicações: </b>
+            <input type="text" id="multNumb" name="valorLinha" value="0"
+                    onkeypress="return NumberKey(event)"
+                    maxlength="8"
+                    size="1%" />
+
+            <br>
+            <br>
+            <button type="opperatorBTN" class="buttonos" id="opperator" value="Criar">Executar</button>
+        </div>
+        <div class="bandaElement" id="bandaElem">
+            <br>
+            <b>Matriz:</b>
+            <select name="BandaOPR1" id="bandaMat1" class="selector">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+            &nbsp;
+            &nbsp;
+            <b>Atribuição 1:</b>
+            <select name="BandaOPR2" id="bandaMat2" class="selector">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="nenhuma">Null</option>
+            </select>
+            &nbsp;
+            &nbsp;
+            <b>Atribuição 2:</b>
+            <select name="BandaOPR3" id="bandaMat3" class="selector">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="nenhuma">Null</option>
+            </select>
+            <br>
+            <br>
+            <br>
+            <b>Primeira Diagonal:</b>
+            <input type="text" id="bandaDiag1" name="bandaDiagonal1" value="1"
+                   onkeypress="return NumberKey(event)"
+                   maxlength="8"
+                   size="1%" />
+
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <b>Segunda Diagonal:</b>
+            <input type="text" id="bandaDiag2" name="bandaDiaggonal2" value="1"
+                   onkeypress="return NumberKey(event)"
+                   maxlength="8"
+                   size="1%" />
+            <br>
+            <br>
+            <br>
+            <button type="bandaBTN" class="buttonos" id="bandaButton" value="bandaa">Executar</button>
+        </div>
+    </div>
+    <div class="container3">
+        <div class="elemento4">
+        Matrizes Guardadas
+        <br>
+        <div class="showerElem">
+            <button type="showNorm" class="buttonos2" id="showNormal" value="mostrar1">Ver Banda</button>
+            <br>
+        </div>
+        </div>
+            <div class="elemento5">
+                <div class="math">
+                    <div id="show_mat_a">
+                        <span>A = </span>
+                        <div id="matrix-01"></div>
+                        <span>B = </span>
+                        <div id="matrix-02"></div>
+                    </div>
+                    <div id="show_mat_b">
+                        <span>Banda A = </span>
+                        <div id="matrix-03"></div>
+                        <span>Banda B = </span>
+                        <div id="matrix-04"></div>
+                    </div>
+                    <div id="show_mat_c">
+                        <br>
+                        <span>Soma = </span>
+                        <div id="matrix-05"></div>
+                    </div>
+                    <div id="show_mat_d">
+                        <br>
+                        <span>Soma banda = </span>
+                        <div id="matrix-06"></div>
+                    </div>
+                    <br>
+                    <div id="show_mat_e">
+                        <span>Multiplicação = </span>
+                        <div id="matrix-07"></div>
+                    </div>
+                    <div id="show_mat_f">
+                        <span>Multiplicação banda = </span>
+                        <div id="matrix-08"></div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="container4">
+        <div class="elemento7">
+        Gráfico
+        </div>
+    </div>
+
+    <script>
+        const list = document.querySelectorAll('.list');
+
+        function activeLink()
+        {
+            list.forEach((item) =>
+            item.classList.remove('active'));
+            this.classList.add('active');
+
+            if(list.item(0).classList.contains('active'))
+            {
+                document.getElementById("creatorElement").style.display="block";
+                document.getElementById("editElement").style.display="none";
+                document.getElementById("operaElem").style.display="none";
+                document.getElementById("bandaElem").style.display="none";
+            }
+            else if(list.item(1).classList.contains('active'))
+            {
+                document.getElementById("creatorElement").style.display="none";
+                document.getElementById("editElement").style.display="block";
+                document.getElementById("operaElem").style.display="none";
+                document.getElementById("bandaElem").style.display="none";
+            }
+            else if(list.item(2).classList.contains('active'))
+            {
+                document.getElementById("creatorElement").style.display="none";
+                document.getElementById("editElement").style.display="none";
+                document.getElementById("operaElem").style.display="block";
+                document.getElementById("bandaElem").style.display="none";
+            }
+            else if(list.item(3).classList.contains('active'))
+            {
+                document.getElementById("creatorElement").style.display="none";
+                document.getElementById("editElement").style.display="none";
+                document.getElementById("operaElem").style.display="none";
+                document.getElementById("bandaElem").style.display="block";
+            }
+            else if(list.item(4).classList.contains('active'))
+            {
+                document.getElementById("creatorElement").style.display="none";
+                document.getElementById("editElement").style.display="none";
+                document.getElementById("operaElem").style.display="none";
+                document.getElementById("bandaElem").style.display="none";
+            }
+            else if(list.item(5).classList.contains('active'))
+            {
+                document.getElementById("creatorElement").style.display="none";
+                document.getElementById("editElement").style.display="none";
+                document.getElementById("operaElem").style.display="none";
+                document.getElementById("bandaElem").style.display="none";
+            }
+        }
+
+        list.forEach((item) =>
+        item.addEventListener('click', activeLink));
+    </script>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>//import url('https://fonts.googleapis.com/css?gamily=Poppins:100,200,300,400,500,600,700,800,900');</script>
+
+</body>
+
+<script>
+    function NumberKey(evt)
+    {
+          
+        // Only ASCII character in that range allowed
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        return true;
+    }
+</script>
+
+</html>
+
+<script type='text/javascript'>
+    // Aqui começa o script *****************************************************************************************
+    //***************************************************************************************************************
+    //***************************************************************************************************************
+    //***************************************************************************************************************
+
+    //O elemento 6 do style foi removido agora
+
+    const btn1 = document.querySelector('#creator');
+    const btn2 = document.querySelector('#alterator');
+    const btn3 = document.querySelector('#opperator');
+    const btn4 = document.querySelector('#bandaButton');
+    const btnShow1 = document.querySelector('#showNormal');
+
+    var mini = 1, maxi = 10, somas = 0, multis = 0;
+    var sizeRow = 5, sizeLine = 5, tipoMatr = 0, tipoGeral = 0, diagonal = 3, diagonal2 = 1;
+    var editorI = 1, editorj = 1, valorEditor = 0;
+    var guarda1, guarda2;
+    var tipoDaMatriz = "Diag";
+    var tipoNumbers = 1;
+    var qualVar = "A";
+    var sizeAI = 0;
+    var sizeAJ = 0;
+    var sizeBI = 0;
+    var sizeBJ = 0;
+    var sizeCI = 0;
+    var sizeCJ = 0;
+    var sizeDI = 0;
+    var sizeDJ = 0;
+
+    var diagonalA = 0;
+    var diagonalB = 0;
+
+    var mostraBanda = 0;
+    var makedSum = 0;
+    var makedMult = 0;
+
+    var matrixA = getMatrixRand(sizeRow);
+    var matrixB = getMatrixRand(sizeRow);
+    var matrixC = getMatrixRand(sizeRow);
+    var matrixD = getMatrixRand(sizeRow);
+    var matrixSoma = getMatrixRand(sizeRow);
+    var matrixMulti = getMatrixRand(sizeRow);
+    var matrixSomaBanda = getMatrixRand(sizeRow);
+    var matrixMultiBanda = getMatrixRand(sizeRow);
+
+    //var temporaria1 = getMatrixRand(sizeRow);
+    //var temporaria2 = getMatrixRand(sizeRow);
+
+    var matrixAtribuidora = getMatrixRand(sizeRow);
+    var matrixAtribuidoraBanda = getMatrixRand(sizeRow);
+
+    //Tien: ativa ou nao versao sem switch
+
+    /* As matrizes A e B são as matrizes cheias, 
+    enquanto as matrizes C e D não as matrizes banda de A e B, respectivamente.*/
+
+    // Essas variáveis ajudam a definir o tipo de matriz que será formada
+    // Para o "tipoNumbers", 1 é 1 e zeros, 2 é aleatórios, e 3 é sequencial
+
+    //var txt = "";
+    /* Para essa variável de teste, usava-se o seguinte código:
+    <div id="output">
+        teste
+    </div>
+    testudão*/
+
+    document.getElementById("editElement").style.display="none";
+    document.getElementById("operaElem").style.display="none";
+    document.getElementById("bandaElem").style.display="none";
+
+    document.getElementById("show_mat_a").style.display="none";
+    document.getElementById("show_mat_b").style.display="none";
+    document.getElementById("show_mat_c").style.display="none";
+    document.getElementById("show_mat_d").style.display="none";
+    document.getElementById("show_mat_e").style.display="none";
+    document.getElementById("show_mat_f").style.display="none";
+
+
+    // Aqui começa as funções dos botões ***************************************************************************
+    //***************************************************************************************************************
+    //***************************************************************************************************************
+    //***************************************************************************************************************
+
+    // Nesse primeiro botão, são verificadas as condições selecionadas pelo usuário, e então é chamada a função 
+    //necessária, baseando-se na criação de uma matriz cheia ou diagonal.
+
+    btn1.addEventListener("click", (e) =>{
+        e.preventDefault();
+
+        sizeLine = document.getElementById("sizeI").value;
+        sizeRow = document.getElementById("sizeJ").value;
+        mini = document.getElementById("minimo").value;
+        maxi = document.getElementById("maximo").value;
+        diagonal = document.getElementById("sizeDiag").value;
+
+        document.getElementById("show_mat_a").style.display="block";
+        document.getElementById("show_mat_b").style.display="none";
+
+        //Esse botão cria as matrizes
+
+        switch (document.getElementById("tipoValores1").value)
+        {
+
+            case "zeroUm":
+
+                tipoNumbers = 1;
+
+                break;
+
+            case "ValoresAleat":
+                
+                tipoNumbers = 2;
+
+                break;
+
+            case "Sequence":
+                
+                tipoNumbers = 3;
+
+                break;
+        }
+
+        switch (document.getElementById("tipoSelect1").value)
+        {
+            case "Diagonal":
+                
+                tipoDaMatriz = "Diag";
+
+                break;
+
+            case "Cheia":
+                
+                tipoDaMatriz = "Full";
+
+                break;
+        }
+        // declaracoes versao sem switch
+        var matrix1,matrix2,size1I,size1J,opcoesCase,opcoesMat,opcoesBan,
+            opcaoMat,opcaoBan;
+        // versao sem switch -- inicia aqui
+
+        document.getElementById("show_mat_a").style.display="block";
+        document.getElementById("show_mat_b").style.display="none";
+        document.getElementById("show_mat_c").style.display="none";
+        document.getElementById("show_mat_d").style.display="none";
+        //  arrays de opcoes 
+        opcoesCase=["A","B","S"];
+        opcoesMat=[1,2,5];
+        opcoesBan=[3,4,6];
+        for (var opcao=0;opcao<4;opcao++)
+        {
+           if (document.getElementById("matrixSelect1").value == opcoesCase[opcao])
+           {
+                // definicoes antes da parte a ser levemente alterada
+                opcaoMat="matrix-0"+opcoesMat[opcao];
+                opcaoBan="matrix-0"+opcoesBan[opcao];
+                //alert('opcaoMat '+opcaoMat+' opcaoBan '+opcaoBan+' opcao '+opcao);
+                // o que tinha em cada opcao case agora estah aqui um pouco modificado
+                document.getElementById(opcaoMat).innerHTML='';
+                document.getElementById(opcaoBan).innerHTML='';
+
+                if (tipoDaMatriz == "Diag")
+                {
+                    // dispensa globais associadas a sizeI e sizeJ
+                    [matrix1,size1I,size1J] = generateDiagonal(opcaoMat, sizeLine, sizeRow, tipoNumbers, diagonal, mini, maxi);
+
+                    if (document.getElementById("matrixSelect1").value == "A")
+                    {
+                        matrix2 = MakeBand("matrix-03", diagonal, diagonal2, size1I, matrix1, 1);
+                    }
+                    else
+                    {
+                        matrix2 = MakeBand("matrix-04", diagonal, diagonal2, size1I, matrix1, 1);
+                    }
+                }
+                else
+                {
+                    [matrix1,size1I,size1J] = generateCheia(opcaoMat, sizeLine, sizeRow, tipoNumbers, mini, maxi);
+                }
+                // definicoes depois da parte a ser levemente alterada
+                // (para atribuir ahs variaveis globais certas, as locais definidas)
+                if (opcao==0) {matrixA=matrix1;matrixC=matrix2;diagonalA=diagonal;sizeAI=size1I;sizeAJ=size1J}
+                else if (opcao==1) {matrixB=matrix1;matrixD=matrix2;diagonalB=diagonal;sizeBI=size1I;sizeBJ=size1J}
+                //alert('matrixA '+matrixA+' matrixC '+matrixC+' matrix1 '+matrix1+' matrix2 '+matrix2+' opcao '+opcao);
+           }
+        }          
+        // versao sem switch -- termina aqui
+
+        // A versao com switch foi removida nessa versão
+    });
+
+    //***************************************************************************************************************
+    //***************************************************************************************************************
+    //***************************************************************************************************************
+    //***************************************************************************************************************
+
+    btn2.addEventListener("click", (e) =>{
+        e.preventDefault();
+
+        editorI = (document.getElementById("sizeIedit").value)-1;
+        editorJ = (document.getElementById("sizeJedit").value)-1;
+        valorEditor = document.getElementById("valueEdit").value;
+
+        //Esse botão altera os valores das matrizes existentes
+
+        // declaracoes versao sem switch
+        var matrix1,size1I,size1J,opcoesCase,opcoesMat,
+            opcaoMat;
+        // versao sem switch -- inicia aqui
+
+        // mostra quais telas de matrizes
+        document.getElementById("show_mat_a").style.display="block";
+        document.getElementById("show_mat_b").style.display="none";
+        document.getElementById("show_mat_c").style.display="none";
+        document.getElementById("show_mat_d").style.display="none";
+        //  arrays de opcoes 
+        opcoesCase=["A","B","C","D"];
+        opcoesMat=[1,2,3,4];
+        for (var opcao=0;opcao<4;opcao++)
+        {
+           if (document.getElementById("matrixSelect2").value == opcoesCase[opcao])
+           {
+                // definicoes antes da parte a ser levemente alterada
+                opcaoMat="matrix-0"+opcoesMat[opcao];
+                // (para atribuir ahs variaveis locais, as globais certas)
+                if (opcao==0) {matrix1=matrixA;size1I=sizeAI;size1J=sizeAJ}
+                else if (opcao==1) {matrix1=matrixB;size1I=sizeBI;size1J=sizeBJ}
+                // o que tinha em cada opcao case agora estah aqui um pouco modificado
+                document.getElementById("show_mat_a").style.display="block";
+                document.getElementById(opcaoMat).innerHTML='';
+
+                matrix1[editorI][editorJ] = parseInt(valorEditor);
+                showMatrix(opcaoMat, matrix1, size1I, size1J);
+           }
+        }
+        // versao sem switch -- termina aqui
+
+        // A versao com switch foi removida nessa versão
+    });
+
+    //***************************************************************************************************************
+    //***************************************************************************************************************
+    //***************************************************************************************************************
+    //***************************************************************************************************************
+
+    btn3.addEventListener("click", (e) =>{
+        e.preventDefault();
+
+        //Esse botão executa as operações
+
+         // declaracoes versao sem switch
+        var matrix1,matrix2,matrix3,matrix4,size1I,size1J,size2I,size2J,sizeB1I,sizeB1J,sizeB2I,sizeB2J,
+            opcoesCase,opcoesMat,opcaoMat1,opcaoMat2;
+       // versao sem switch -- inicia aqui
+
+        // mostra quais telas de matrizes
+        document.getElementById("show_mat_a").style.display="block";
+        document.getElementById("show_mat_b").style.display="none";
+        document.getElementById("show_mat_c").style.display="block";
+        document.getElementById("show_mat_d").style.display="none";
+        //  arrays de opcoes 
+        opcoesCase=["A","B","C","D"];
+        opcoesMat=[1,2,3,4];
+        for (var opcao1=0;opcao1<4;opcao1++) 
+        {
+           if (document.getElementById("operada1").value == opcoesCase[opcao1]) 
+           {
+              // definicoes antes da parte a ser levemente alterada
+              opcaoMat1="matrix-0"+opcoesMat[opcao1];
+              // (para atribuir ahs variaveis locais, as globais certas)
+               if (opcao1==0)
+               {
+                    matrix1=matrixA;
+                    size1I=sizeAI;
+                    size1J=sizeAJ;
+
+                    matrix3=matrixC;
+                    sizeB1I=sizeCI;
+                    sizeB1J=sizeCJ;
+               }
+               else if (opcao1==1)
+               {
+                    matrix1=matrixB;
+                    size1I=sizeBI;
+                    size1J=sizeBJ;
+
+                    matrix3=matrixD;
+                    sizeB1I=sizeDI;
+                    sizeB1J=sizeDJ;
+               }
+
+
+               for (var opcao2=0;opcao2<4;opcao2++) 
+               {
+                  if (document.getElementById("operada2").value == opcoesCase[opcao2])
+                  {
+                     opcaoMat2="matrix-0"+opcoesMat[opcao2];
+                     // (para atribuir ahs variaveis locais, as globais certas)
+                     if (opcao2==0)
+                     {
+                        matrix2=matrixA;
+                        size2I=sizeAI;
+                        size2J=sizeAJ;
+
+                        matrix4=matrixC;
+                        sizeB2I=sizeCI;
+                        sizeB2J=sizeCJ;
+                     }
+                     else if (opcao2==1)
+                     {
+                        matrix2=matrixB;
+                        size2I=sizeBI;
+                        size2J=sizeBJ;
+
+                        matrix4=matrixD;
+                        sizeB2I=sizeDI;
+                        sizeB2J=sizeDJ;
+                     }
+                        // o que tinha em cada opcao case agora estah aqui um pouco modificado
+                        if((document.getElementById("tipoDeOperar").value) == "somar")
+                        {
+                            // Esta chamada eh que faz a soma (na versao cheia)
+                            matrixAtribuidora = MatrixAdd(size1I, size1J, matrix1, matrix2);
+                            //const temporaria1 = matrix3;
+                            //const temporaria2 = matrix4;
+                            matrixAtribuidoraBanda = MatrixAddBanda(size1I, size1J, matrix3, sizeB1I, sizeB1J, matrix4, sizeB2I, sizeB2J);
+
+                            //matrix3 = temporaria1;
+                            //matrix4 = temporaria2;
+                            
+                            alert('Mat1 '+matrix3+' Mat2 '+matrix4);
+                            
+                            if ((document.getElementById("operada3").value) == "A")
+                            {
+                                matrixA = matrixAtribuidora;
+                                document.getElementById("matrix-01").innerHTML='';
+                                showMatrix("matrix-01", matrixA, sizeAI, sizeAJ);
+                            }
+                            else if ((document.getElementById("operada3").value) == "B")
+                            {
+                                matrixB = matrixAtribuidora;
+                                document.getElementById("matrix-02").innerHTML='';
+                                showMatrix("matrix-02", matrixB, sizeBI, sizeBJ);
+                            }
+                            else
+                            {
+                                //document.getElementById("show_mat_c").style.display="block";
+                                if (mostraBanda == 1) {mostraBanda = 0;}
+                                matrixSoma = matrixAtribuidora;
+                                matrixSomaBanda = matrixAtribuidoraBanda;
+                                document.getElementById("matrix-05").innerHTML='';
+                                showMatrix("matrix-05", matrixSoma, sizeAI, sizeAJ);
+                                document.getElementById("matrix-06").innerHTML='';
+
+                                //alert('sizeCJ '+sizeCJ+' sizeDJ '+sizeDJ);
+                                
+                                if (sizeCJ > sizeDJ)
+                                {
+                                    showMatrix("matrix-06", matrixSomaBanda, sizeCI, sizeCJ-1);
+                                }
+                                else
+                                {
+                                    showMatrix("matrix-06", matrixSomaBanda, sizeDI, sizeDJ-1);
+                                }
+                            }
+                        } // fim if caso geral somar
+                        else//if((document.getElementById("tipoDeOperar").value) == "multiplicar")
+                        {
+                            if (sizeAJ == sizeBI)
+                            {
+                                matrixAtribuidora = MatrixMultiply(size1I, size1J, matrix1, size2I, size2J, matrix2);
+                            }
+                            else
+                            {
+                                alert('O Tamanho das matrizes não é compatível ');
+                                break;
+                            }
+
+                            if (sizeCJ == sizeDI)
+                            {
+                                matrixAtribuidoraBanda = MatrixMultiply(sizeCI, sizeCJ, matrix3, sizeDI, sizeDJ, matrix4);
+                            }
+                            else
+                            {
+                                alert('O Tamanho das matrizes banda não é compatível ');
+                            }
+
+                            document.getElementById("show_mat_e").style.display="block";
+                            
+                            if ((document.getElementById("operada3").value) == "A")
+                            {
+                                matrixA = matrixAtribuidora;
+                                document.getElementById("matrix-01").innerHTML='';
+                                showMatrix("matrix-01", matrixA, sizeAI, sizeAJ);
+                            }
+                            else if ((document.getElementById("operada3").value) == "B")
+                            {
+                                matrixB = matrixAtribuidora;
+                                document.getElementById("matrix-02").innerHTML='';
+                                showMatrix("matrix-02", matrixB, sizeBI, sizeBJ);
+                            }
+                            else
+                            {
+                                document.getElementById("show_mat_c").style.display="block";
+                                matrixMulti = matrixAtribuidora;
+                                document.getElementById("matrix-07").innerHTML='';
+                                showMatrix("matrix-07", matrixMulti, sizeAI, sizeAJ);
+
+                                if (sizeCJ == sizeDI)
+                                {
+                                    matrixMultiBanda = matrixAtribuidoraBanda;
+                                    document.getElementById("matrix-08").innerHTML='';
+
+                                    if (sizeCJ > sizeDJ)
+                                    {
+                                        showMatrix("matrix-08", matrixMultiBanda, sizeCI, sizeCJ-1);
+                                    }
+                                    else
+                                    {
+                                        showMatrix("matrix-08", matrixMultiBanda, sizeDI, sizeDJ-1);
+                                    }
+                                }
+                            }
+                        } // fim if caso geral multiplicar
+                  } // fim if case 2
+               } // fim for case 2
+            } // fim if case 1
+         } // fim for case 1
+        // versao sem switch -- termina aqui
+
+        // A versao com switch foi removida nessa versão
+
+        document.getElementById("somaNumb").value = somas;
+        document.getElementById("multNumb").value = multis;
+        somas = 0;
+        multis = 0;
+    });
+
+    // Botão das bandas******************************************************************************************************
+    //***************************************************************************************************************
+    //***************************************************************************************************************
+    //***************************************************************************************************************
+
+    btn4.addEventListener("click", (e) =>{
+        e.preventDefault();
+
+        //Esse botão altera as matrizes para uma matriz banda
+        //Porém, ele não parece ser mais necessário
+    });
+
+    btnShow1.addEventListener("click", (e) =>{
+        e.preventDefault();
+
+        if (mostraBanda == 0)
+        {
+            document.getElementById("show_mat_a").style.display="none";
+            document.getElementById("show_mat_b").style.display="block";
+
+            if (makedSum == 1)
+            {
+                document.getElementById("show_mat_c").style.display="none";
+                document.getElementById("show_mat_d").style.display="block";
+            }
+
+            if (makedMult == 1)
+            {
+                document.getElementById("show_mat_e").style.display="none";
+                document.getElementById("show_mat_f").style.display="block";
+            }
+
+            mostraBanda = 1;
+        }
+        else
+        {
+            document.getElementById("show_mat_a").style.display="block";
+            document.getElementById("show_mat_b").style.display="none";
+            
+            if (makedSum == 1)
+            {
+                document.getElementById("show_mat_c").style.display="block";
+                document.getElementById("show_mat_d").style.display="none";
+            }
+
+            if (makedMult == 1)
+            {
+                document.getElementById("show_mat_e").style.display="block";
+                document.getElementById("show_mat_f").style.display="none";
+            }
+
+            mostraBanda = 0;
+        }
+    });
+
+    // Aqui termina as funções dos botões ***************************************************************************
+    //***************************************************************************************************************
+    //***************************************************************************************************************
+    //***************************************************************************************************************
+    
+    function generateDiagonal(elem, lines, coluns, tValores, diags, min, max)
+    {
+        var matrix = new Array();
+        var counter = 0;
+        var sequencia = 1;
+        var diag = diagonal;
+        var diagCount = (diagonal - 1)/2;
+        
+        // recupera indice dos vetores associados a sizeI e sizeJ
+        var indSize=elem.charAt(elem.length-1)-1;
+        var sizeI=[0,0,0,0],sizeJ=[0,0,0,0];
+
+        if (tValores == 1)
+        {
+            // Para o "tValores", 1 é 1 e zeros, 2 é aleatórios, e 3 é sequencial
+
+            if (diags == 1)
+            {
+                for (i=0; i < lines; i++)
+                {
+                    matrix[i] = new Array();
+
+                    for (j=0; j < coluns; j++)
+                    {
+                        if((counter == i)&&(counter == j))
+                        {
+                            matrix[i][j] = 1;
+                            counter++;
+                        }
+                        else
+                        {
+                            matrix[i][j] = 0;
+                        }
+
+                        // mudou:
+                        sizeJ[indSize]=j+1;
+                    }
+
+                    // mudou:
+                    sizeI[indSize]=i+1;
+                }
+            }
+            else
+            {
+                for (i=0; i < lines; i++)
+                {
+                    matrix[i] = new Array();
+
+                    for (j=0; j < coluns; j++)
+                    {
+                        if((j == counter)||(j == counter)||((j >= (counter - diagCount))&&(j <= (counter + diagCount))))
+                        {
+                            matrix[i][j] = 1;
+                        }
+                        else
+                        {
+                            matrix[i][j] = 0;
+                        }
+
+                        // mudou:
+                        sizeJ[indSize]=j+1;
+                    }
+
+                    counter++;
+
+                     // mudou:
+                     sizeI[indSize]=i+1;
+                }
+            }
+        }
+        else if (tValores == 2)
+        {
+            // Para o "tValores", 1 é 1 e zeros, 2 é aleatórios, e 3 é sequencial
+
+            if (diags == 1)
+            {
+                for (i=0; i < lines; i++)
+                {
+                    matrix[i] = new Array();
+
+                    for (j=0; j < coluns; j++)
+                    {
+                        if((counter == i)&&(counter == j))
+                        {
+                            matrix[i][j] = getRandom();
+                            counter++;
+                        }
+                        else
+                        {
+                            matrix[i][j] = 0;
+                        }
+
+                        // mudou:
+                        sizeJ[indSize]=j+1;
+                    }
+
+                     // mudou:
+                     sizeI[indSize]=i+1;
+                }
+            }
+            else
+            {
+                for (i=0; i < lines; i++)
+                {
+                    matrix[i] = new Array();
+
+                    for (j=0; j < coluns; j++)
+                    {
+                        if((j == counter)||(j == counter)||((j >= (counter - diagCount))&&(j <= (counter + diagCount))))
+                        {
+                            matrix[i][j] = getRandom(min, max);
+                        }
+                        else
+                        {
+                            matrix[i][j] = 0;
+                        }
+
+                        // mudou:
+                        sizeJ[indSize]=j+1;
+                    }
+
+                    counter++;
+
+                     // mudou:
+                     sizeI[indSize]=i+1;
+                }
+            }
+        }
+        else if (tValores == 3)
+        {
+            // Para o "tValores", 1 é 1 e zeros, 2 é aleatórios, e 3 é sequencial
+
+            if (diags == 1)
+            {
+                for (i=0; i < lines; i++)
+                {
+                    matrix[i] = new Array();
+
+                    for (j=0; j < coluns; j++)
+                    {
+                        if((counter == i)&&(counter == j))
+                        {
+                            matrix[i][j] = sequencia;
+                            sequencia ++;
+                            counter++;
+                        }
+                        else
+                        {
+                            matrix[i][j] = 0;
+                        }
+
+                        // mudou:
+                        sizeJ[indSize]=j+1;
+                    }
+
+                     // mudou:
+                     sizeI[indSize]=i+1;
+                }
+            }
+            else
+            {
+                for (i=0; i < lines; i++)
+                {
+                    matrix[i] = new Array();
+
+                    for (j=0; j < coluns; j++)
+                    {
+                        if((j == counter)||(j == counter)||((j >= (counter - diagCount))&&(j <= (counter + diagCount))))
+                        {
+                            matrix[i][j] = sequencia;
+                            sequencia ++;
+                        }
+                        else
+                        {
+                            matrix[i][j] = 0;
+                        }
+
+                     // mudou:
+                     sizeJ[indSize]=j+1;
+                    }
+
+                    counter++;
+
+                     // mudou:
+                     sizeI[indSize]=i+1;
+                }
+            }
+        }
+
+        showMatrix(elem, matrix, lines, coluns);
+
+        return [matrix,sizeI[indSize],sizeJ[indSize]];
+    }
+
+    //**************************************************************************************************
+    //**************************************************************************************************
+    //**************************************************************************************************
+    //**************************************************************************************************
+
+    function generateCheia(elem, lines, coluns, tValores, min, max)
+    {
+        var matrix = new Array();
+        var counter = 0;
+        var sequencia = 1;
+
+        //1 = Diagonal única
+        //2 = Diagonal selecionada pelo 4° valor, com valores iguais a 1
+        //3 = Diagonal selecionada pelo 4° valor, com valores aleatórios
+
+        var indSize=elem.charAt(elem.length-1)-1;
+        var sizeI=[0,0,0,0],sizeJ=[0,0,0,0];
+
+        if (tValores == 1)
+        {
+            // Para o "tValores", 1 é 1 e zeros, 2 é aleatórios, e 3 é sequencial
+
+            for (i=0; i < lines; i++)
+            {
+                matrix[i] = new Array();
+
+                for (j=0; j < coluns; j++)
+                {
+                    matrix[i][j] = 1;
+
+                    sizeJ[indSize]=j+1;
+                }
+
+                sizeI[indSize]=i+1;
+            }
+        }
+        else if (tValores == 2)
+        {
+            // Para o "tValores", 1 é 1 e zeros, 2 é aleatórios, e 3 é sequencial
+
+            for (i=0; i < lines; i++)
+            {
+                matrix[i] = new Array();
+
+                for (j=0; j < coluns; j++)
+                {
+                    matrix[i][j] = getRandom(min, max);
+
+                    sizeJ[indSize]=j+1;
+                }
+
+                sizeI[indSize]=i+1;
+            }
+        }
+        else if (tValores == 3)
+        {
+            // Para o "tValores", 1 é 1 e zeros, 2 é aleatórios, e 3 é sequencial
+
+            for (i=0; i < lines; i++)
+            {
+                matrix[i] = new Array();
+
+                for (j=0; j < coluns; j++)
+                {
+                    matrix[i][j] = sequencia;
+                    sequencia++;
+
+                    sizeJ[indSize]=j+1;
+                }
+
+                sizeI[indSize]=i+1;
+            }
+        }
+
+        showMatrix(elem, matrix, lines, coluns);
+
+        //return matrix;
+        return [matrix,sizeI[indSize],sizeJ[indSize]];
+    }
+
+    // Aqui termina as geradoras de matriz ***************************************************************************
+    //***************************************************************************************************************
+    //***************************************************************************************************************
+    //***************************************************************************************************************
+    
+
+    function getMatrixRand(size)
+    {
+       var matrix = new Array(size),
+          idx = size,
+          args;
+
+       for (i=0; i < size; i++)
+       {
+        matrix[i] = getRandom();
+       }
+
+       if (arguments.length > 1)
+       {
+          args = Array.prototype.slice.call(arguments, 1);
+
+          while(idx--)
+          {
+            matrix[size-1 - idx] = getMatrixRand(args);
+          }
+       }
+       return matrix;
+    }
+
+    function MatrixAdd(rows, cols, matr1, matr2)
+    {
+       var matrix = new Array(),
+       table;
+       var mat1 = matr1;
+       var mat2 = matr2;
+
+       for (i1=0; i1 < rows; i1++)
+        {
+            matrix[i1] = new Array();
+
+            for (j1=0; j1 < cols; j1++)
+            {
+                if((mat1[i1][j1] != null) && (mat2[i1][j1] != null))
+                {
+                    matrix[i1][j1] = mat1[i1][j1] + mat2[i1][j1];
+                }
+                else
+                {
+                    matrix[i1][j1] = null;
+                }
+            }
+        }
+
+        return matrix;
+    }
+
+    function MatrixAddBanda(rows, cols, matr1, sizeI1, sizeJ1, matr2, sizeI2, sizeJ2)
+    {
+       var matrix;
+       var mat1;
+       var mat2;
+       //var counter = 0;
+       var meioI = 0;
+       var meioIMenor = 0;
+       var controleMeio = 0;
+       //var colunaLimite = 0;
+       var passo = 1;
+
+
+       if (sizeJ1 > sizeJ2)
+       {
+            meioI = (sizeJ1-1)/2;
+
+            if (sizeJ2 > 1)
+            {
+                meioIMenor = (sizeJ2-1)/2;
+                //colunaLimite = sizeJ2-1;
+            }
+
+            mat1 = matr1;
+            mat2 = matr2;
+
+
+            matrix = mat1;
+       }
+       else
+       {
+            meioI = (sizeJ2-1)/2;
+
+            if (sizeJ1 > 1)
+            {
+                meioIMenor = (sizeJ1-1)/2;
+                //colunaLimite = sizeJ1-1;
+            }
+
+            mat1 = matr2;
+            mat2 = matr1;
+
+            matrix = mat2;
+       }
+
+       while (meioIMenor >= 0)
+       {
+            for (i1=0; i1 < rows; i1++)
+            {
+                //matrix[i1] = new Array();
+
+                if((mat1[i1][meioI] != null) && (mat2[i1][meioIMenor] != null))
+                {
+                    matrix[i1][meioI] = mat1[i1][meioI] + mat2[i1][meioIMenor];
+                    somas++;
+                }
+                else if((mat1[i1][meioI] == null) && (mat2[i1][meioIMenor] != null))
+                {
+                    matrix[i1][meioI] = mat2[i1][meioIMenor];
+                    somas++;
+                }
+                else if((mat1[i1][meioI] != null) && (mat2[i1][meioIMenor] == null))
+                {
+                    matrix[i1][meioI] = mat1[i1][meioIMenor];
+                    somas++;
+                }
+                else
+                {
+                    matrix[i1][meioI] = null;
+                }
+            }
+
+            if (controleMeio == 0)
+            {
+                meioI = meioI-passo;
+                meioIMenor = meioIMenor-passo;
+                controleMeio = 1;
+                passo++;
+            }
+            else if (controleMeio == 1)
+            {
+                meioI = meioI+passo;
+                meioIMenor = meioIMenor+passo;
+                controleMeio = 0;
+                passo++;
+            }
+        }
+
+        makedSum = 1;
+
+        return matrix;
+    }
+
+    function MatrixMultiply(rows1, cols1, matr1, rows2, cols2, matr2)
+    {
+       var matrix = new Array(),
+       table;
+       var mat1 = matr1;
+       var mat2 = matr2;
+       var counter = 0;
+       //var sizeRow = row - 1;
+       //var sizeCol = cols - 1;
+
+       //A matriz resultante terá o mesmo número de linhas que a primeira matriz,
+       //e o número de colunas da segunda matriz.
+
+       
+        for (i1=0; i1 < rows1; i1++)
+        {
+            matrix[i1] = new Array();
+
+            for (j1=0; j1 < cols2; j1++)
+            {
+                matrix[i1][j1] = 0;
+            }
+        }
+
+       for (i2=0; i2 < rows2; i2++)
+        {
+            for (j2=0; j2 < cols2; j2++)
+            {
+                for (k=0; k < rows1; k++)
+                {
+                    matrix[i2][j2] = matrix[i2][j2]+((mat1[i2][k])*(mat2[k][j2]));
+                    multis++;
+                }
+            }
+        }
+
+        makedMult = 1;
+
+        return matrix;
+    }
+
+    function MakeBand(elem, diagonal, segundaDiagonal, lines, matr1, showWhat)
+    {
+        //Fazer a função que obtêm a diagonal da matriz banda, através do uso das colunas da matriz principal.
+
+       var matrix = new Array();
+       var matrix2 = new Array();
+       var mat1 = matr1;
+       var skip = -1;
+       var diag = diagonal-1;
+
+       if(diagonal > 2)
+       {
+            skip = -((diagonal-1)/2);
+       }
+       else if(diagonal == 1)
+       {
+            diag = 1;
+            skip = 0;
+       }
+
+       for (var i1=0; i1 < lines; i1++)
+        {
+            matrix[i1] = new Array();
+
+            if(skip>0)
+            {
+                var newCont2 = skip;
+
+                for (var j1=0; j1 < diagonal; j1++)
+                {
+                    if(newCont2 == lines)
+                    {
+                        matrix[i1][j1] = null;
+                    }
+                    else
+                    {
+                        matrix[i1][j1] = mat1[i1][newCont2];
+                        newCont2++;
+                    }
+                }
+
+                skip++;
+            }
+            else
+            {
+                var newCont = 0;
+
+                for (var j1=skip; j1 < diagonal; j1++)
+                {
+                    if(j1<0)
+                    {
+                        //txt += "i1 "+i1+"<br>";
+                        //document.getElementById("output").innerHTML = txt;
+                        matrix[i1][newCont] = null;
+                        newCont++;
+                    }
+                    else
+                    {
+                        matrix[i1][newCont] = mat1[i1][j1];
+                        newCont++;
+                    }
+                }
+
+                skip++;
+            }
+
+            if (elem == 'matrix-03')
+            {
+                sizeCI = i1 + 1;
+            }
+            else
+            {
+                sizeDI = i1 + 1;
+            }
+        }
+
+        if ((segundaDiagonal == 1) && (showWhat != 1))
+        {
+            var colunaDiag = ((diagonal-1)/2);
+
+            for (var i1=0; i1 < lines; i1++)
+            {
+                matrix2[i1] = new Array();
+
+                matrix2[i1][1] = matrix[i1][colunaDiag];
+
+                if (elem == 'matrix-03')
+                {
+                    sizeCI = i1 + 1;
+                }
+                else
+                {
+                    sizeDI = i1 + 1;
+                }
+            }
+        }
+        else
+        {
+            var colunaDiag = ((diagonal-1)/2);
+            var colunaExt = ((segundaDiagonal-1)/2);
+            var contr = colunaDiag-colunaExt;
+            var limite = colunaDiag+colunaExt+1;
+
+            for (var i1=0; i1 < lines; i1++)
+            {
+                matrix2[i1] = new Array();
+
+                for (var j1=0; j1 < (segundaDiagonal); j1++)
+                {
+                    matrix2[i1][j1] = matrix[i1][contr];
+                    contr++;
+
+                    if (contr > limite)
+                    {
+                        j1 = colunaDiag;
+                    }
+                }
+
+                if (elem == 'matrix-03')
+                {
+                    sizeCI = i1 + 1;
+                }
+                else
+                {
+                    sizeDI = i1 + 1;
+                }
+
+                contr = colunaDiag-colunaExt;
+            }
+        }
+
+        showMatrix(elem, matrix, lines, diag);
+
+        if (elem == 'matrix-03')
+        {
+            sizeCJ = diagonal;
+        }
+        else
+        {
+            sizeDJ = diagonal;
+        }
+
+        if (showWhat == 1)
+        {
+            return matrix;
+        }
+        else
+        {
+            return matrix2;
+        }
+    }
+    
+    function getRandom(minus, maxis)
+    {
+        var resultado;
+
+        resultado = Math.floor((Math.random() * maxis) + minus);
+
+        if (resultado < minus)
+        {
+            resultado = minus;
+        }
+        
+        return resultado;
+    }
+
+    function showMatrix(elem, matriz, rows, cols)
+    {
+        var matrix = matriz,
+        elem = document.getElementById(elem),
+        table;
+        table = document.createElement('table');
+
+        for (i=0; i < rows; i++)
+        {
+            var row = document.createElement('tr');
+            for (j=-1; j <= cols; j++)
+            {
+                var col = document.createElement('td');
+                col.textContent = matrix[i][j];
+                row.appendChild(col);
+            }
+        table.appendChild(row);
+        }
+        
+        elem.appendChild(table);
+    }
+</script>
+
+<style>
+.title
+{
+    position: relative;
+    width: 42rem;
+    height: 4.125rem;
+    left: 40.8125rem;
+    top: 1.75rem;
+    text-align: center;
+    text-justify: c;
+    background: #FFF7F7;
+    box-shadow: 8px 7px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.container
+{
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 672px;
+    height: 66px;
+
+    background: #FFF7F7;
+    box-shadow: 8px 7px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+    
+}
+.container2
+{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    transform: translate(-0%, -0%);
+    width: 1151px;
+    height: 230px;
+    left: 63px;
+    top: 220px;
+
+    background: #AD784B;
+    box-shadow: 13px 20px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.container3{
+    position: absolute;
+    width: 1151px;
+    height: 500px;
+    left: 70px;
+    top: 500px;
+    background: #AD784B;
+    box-shadow: 13px 20px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.container4{
+    position: absolute;
+    width: 1151px;
+    height: 500px;
+    left: 70px;
+    top: 1050px;
+    background: #AD784B;
+    box-shadow: 13px 20px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.elemento1
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Verdana';
+    font-style: normal;
+    font-size: 25px;
+    color: #000000;
+
+}
+.elemento2
+{
+    position: relative;
+    top: 5%;
+    left: 5%;
+    transform: translate(-5%, -5%);
+    width: 0px;
+    height: 0px;
+    left: 540px;
+    top: 30px;
+
+    background: #FFF7F7;
+    box-shadow: 8px 7px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.elemento3
+{
+    position: relative;
+    top: 5%;
+    left: 5%;
+    transform: translate(-5%, -5%);
+    width: 0px;
+    height: 0px;
+    left: 660px;
+    top: 30px;
+
+    background: #FFF7F7;
+    box-shadow: 8px 7px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.elemento4
+{
+    position: absolute;
+    width: 300px;
+    height: 32px;
+    left: 440px;
+    top: 15px;
+    text-align: center;
+    font-family: 'Verdana';
+    font-style: normal;
+    font-size: 25px;
+    color: #000000;
+    background: #FFF7F7;
+    box-shadow: 8px 7px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.elemento5
+{
+    position: absolute;
+    width: 1000px;
+    height: 32px;
+    left: 95px;
+    top: 120px;
+    text-align: center;
+    font-family: 'Song Myung';
+    font-style: normal;
+    font-size: 32px;
+    color: #FFFFFF;
+}
+.elemento6
+{
+    position: absolute;
+    width: 1000px;
+    height: 32px;
+    left: 95px;
+    top: 305px;
+    text-align: center;
+    font-family: 'Song Myung';
+    font-style: normal;
+    font-size: 32px;
+    color: #FFFFFF;
+}
+.elemento7
+{
+    position: absolute;
+    width: 300px;
+    height: 32px;
+    left: 440px;
+    top: 15px;
+    text-align: center;
+    font-family: 'Verdana';
+    font-style: normal;
+    font-size: 25px;
+    color: #000000;
+    background: #FFF7F7;
+    box-shadow: 8px 7px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+.showerElem
+{
+    position: absolute;
+    width: 100px;
+    height: 32px;
+    left: 100px;
+    top: 40px;
+    text-align: center;
+}
+.creatorElem
+{
+    position: relative;
+    text-align: center;
+    font-size: 20px;
+}
+.inputElem
+{
+    position: relative;
+    text-align: center;
+    font-size: 20px;
+    left: 0%;
+}
+.selector
+{
+    position: relative;
+    width: 4%;
+    height: 15%;
+    font-size: 100%;
+    text-align: center;
+}
+.selector2
+{
+    position: relative;
+    width: 20%;
+    height: 15%;
+    font-size: 85%;
+    text-align: center;
+}
+.selector3
+{
+    position: relative;
+    width: 15%;
+    height: 15%;
+    font-size: 85%;
+    text-align: center;
+}
+.buttonos
+{
+    position: relative;
+    width: 10%;
+    height: 15%;
+    left: 1.7%;
+    font-size: 100%;
+    text-align: center;
+}
+.buttonos2
+{
+    position: relative;
+    width: 120%;
+    height: 110%;
+    left: -10%;
+    font-size: 80%;
+    text-align: center;
+    align-self: center;
+}
+.inputElem2
+{
+    position: relative;
+    text-align: center;
+    font-size: 25px;
+    left: 0%;
+}
+.operaElement
+{
+    position: relative;
+    text-align: center;
+    font-size: 20px;
+}
+.bandaElement
+{
+    position: relative;
+    text-align: center;
+    font-size: 20px;
+}
+
+
+/* A mudança da parte visual começou aqui*/
+.href{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+:root
+{
+    --clr: #222327;
+    --backgrr: #4B9CAD;
+}
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    height: 1600px;
+    background-color: #4B9CAD
+}
+.navigation
+{
+    position: relative;
+    width: 400px;
+    height: 70px;
+    background: #11dd53;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    border-radius: 10px;
+    top: -39.5%;
+}
+.navigation ul
+{
+    display: flex;
+    width: 350px;
+}
+.navigation ul li
+{
+    position: relative;
+    list-style: none;
+    width: 70px;
+    height: 20px;
+    z-index: 1;
+}
+.navigation ul li a
+{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+.navigation ul li a .icon
+{
+    position: relative;
+    display: block;
+    line-height: 75px;
+    font-size: 1.5em;
+    text-align: center;
+    transition: 0.5s;
+    color: var(--clr);
+}
+.navigation ul li.active a .icon
+{
+    transform: translateY(-52px);
+}
+.navigation ul li a .text
+{
+    position: absolute;
+    color: var(--clr);
+    font-weight: 400;
+    font-size: 0.75em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    opacity: 0;
+    transform: translateY(30px);
+}
+.navigation ul li.active a .text
+{
+    opacity: 1;
+    transform: translateY(5px);
+}
+.indicator
+{
+    position: absolute;
+    top: -50px;
+    width: 70px;
+    height: 70px;
+    background: #115AAA;
+    border-radius: 50%;
+    border: 6px solid var(--backgrr);
+    transition: 0.5s;
+}
+.indicator::before
+{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -22px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top-right-radius: 20px;
+    box-shadow: 1px -10px 0 0 var(--backgrr);
+}
+.indicator::after
+{
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -22px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top-left-radius: 20px;
+    box-shadow: -1px -10px 0 0 var(--backgrr);
+}
+
+.navigation ul li:nth-child(1).active ~ .indicator
+{
+    transform: translateX(calc(70px * 0));
+}
+.navigation ul li:nth-child(2).active ~ .indicator
+{
+    transform: translateX(calc(70px * 1));
+}
+.navigation ul li:nth-child(3).active ~ .indicator
+{
+    transform: translateX(calc(70px * 2));
+}
+.navigation ul li:nth-child(4).active ~ .indicator
+{
+    transform: translateX(calc(70px * 3));
+}
+.navigation ul li:nth-child(5).active ~ .indicator
+{
+    transform: translateX(calc(70px * 4));
+}
+</style>
